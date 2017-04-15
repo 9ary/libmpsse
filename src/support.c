@@ -271,7 +271,7 @@ int gpio_write(struct mpsse_context *mpsse, int pin, int direction)
 	        	        mpsse->pstop &= ~pin;
 	        	}
 
-			retval = set_bits_low(mpsse, mpsse->pstart);
+			retval = set_bits_low(mpsse, mpsse->pidle);
 		}
 		else if(pin >= NUM_GPIOL_PINS && pin < NUM_GPIO_PINS)
 		{

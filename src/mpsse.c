@@ -1165,7 +1165,7 @@ int SetDirection(struct mpsse_context *mpsse, uint8_t direction)
 			if(mpsse->status == STOPPED)
 			{
 				mpsse->tris = (DEFAULT_TRIS & 0x0F) | (direction & 0xF0);
-				retval = set_bits_low(mpsse, mpsse->pstart);
+				retval = set_bits_low(mpsse, mpsse->pidle);
 			}
 		}
 	}
