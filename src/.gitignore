@@ -1,0 +1,16 @@
+# Automake stuff
+configure
+autom4te.cache
+config.log
+config.status
+config.h
+Makefile
+
+# SWIG
+mpsse_wrap.c
+pylibmpsse.py
+
+*.o
+*.a
+*.so
+

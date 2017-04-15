@@ -42,6 +42,31 @@ then
 		exit 1
 	fi
 
+	if ! test $PYEXE
+  	then
+    		PYEXE=$(which python)
+    		if ! test ${PYEXE}
+    		then
+      			PYEXE=$(which python3)
+    		fi
+  	fi
+  	echo $PYEXE
+
+  	if ! test $PYDEV
+  	then
+    		for INCL in $(python-config --includes)
+    		do
+      			echo $INCL
+      			INCL=$(echo "${INCL}" | sed 's:^-I::g')
+      			echo $INCL
+      			if test -f "${INCL}/Python.h"
+      			then
+        			PYDEV="${INCL}"
+        			break;
+      			fi;
+    		done
+  	fi
+
 	if ! test $PYDEV
 	then
 		PYDEV="/usr/include/python$(python -V 2>&1 | awk '{print $2}' | cut -d'.' -f1,2)"
@@ -53,8 +78,8 @@ then
 	then
 		dnl This is a hack to get a valid python library path
 		echo "import sys" > pylib.py
-		echo "for path in sys.path: print path" >> pylib.py
-		PYLIB="$(python pylib.py | grep -e '-packages$' | head -1)"
+		echo "for path in sys.path: print(path)" >> pylib.py
+		PYLIB="$(${PYEXE} pylib.py | grep -e '-packages$' | head -1)"
 		rm -f pylib.py
 	fi
 
