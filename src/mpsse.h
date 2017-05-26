@@ -130,6 +130,8 @@ enum mpsse_commands
 	CLOCK_N8_CYCLES_IO_HIGH	= 0x9C,
 	CLOCK_N8_CYCLES_IO_LOW	= 0x9D,
 	TRISTATE_IO		= 0x9E,
+	WAIT_IO_HIGH		= 0x88,
+	WAIT_IO_LOW		= 0x89,
 };
 
 enum low_bits_status
@@ -203,6 +205,7 @@ int WritePins(struct mpsse_context *mpsse, uint8_t data);
 int ReadPins(struct mpsse_context *mpsse);
 int PinState(struct mpsse_context *mpsse, int pin, int state);
 int Tristate(struct mpsse_context *mpsse);
+int WaitIO(struct mpsse_context *mpsse, int state);
 char Version(void);
 
 #ifdef SWIGPYTHON

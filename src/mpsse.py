@@ -414,6 +414,9 @@ class MPSSE(object):
         """
         return _mpsse.Tristate(self.context)
 
+    def WaitIO(self, state=1):
+        return _mpsse.WaitIO(self.context, state)
+
     def Version(self):
         """
         Returns the libmpsse version number.

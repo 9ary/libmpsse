@@ -1263,6 +1263,13 @@ int Tristate(struct mpsse_context *mpsse)
 	return raw_write(mpsse, cmd, sizeof(cmd));
 }
 
+int WaitIO(struct mpsse_context *mpsse, int state)
+{
+	unsigned char cmd = state ? WAIT_IO_HIGH : WAIT_IO_LOW;
+
+	return raw_write(mpsse, &cmd, sizeof(cmd));
+}
+
 /* 
  * Returns the libmpsse version number. 
  * High nibble is major version, low nibble is minor version.
