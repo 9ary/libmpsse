@@ -72,6 +72,7 @@ then
 		PYDEV="/usr/include/python$(python -V 2>&1 | awk '{print $2}' | cut -d'.' -f1,2)"
 	fi
 
+	CPPFLAGS="-I$PYDEV"
 	AC_CHECK_HEADERS([$PYDEV/Python.h],[],[echo "error: missing python header files" && exit 1])
 
 	if ! test $PYLIB
