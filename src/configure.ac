@@ -54,7 +54,7 @@ then
 
   	if ! test $PYDEV
   	then
-    		for INCL in $(python-config --includes)
+    		for INCL in $(python3-config --includes)
     		do
       			echo $INCL
       			INCL=$(echo "${INCL}" | sed 's:^-I::g')
